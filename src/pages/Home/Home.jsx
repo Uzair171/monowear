@@ -1,6 +1,6 @@
 import React from "react";
-import DirectoryItem from "../components/DirectoryItem/DirectoryItem";
-import "../index.style.scss";
+import DirectoryItem from "../../components/DirectoryItem/DirectoryItem";
+import "../../index.style.scss";
 
 const Home = () => {
   return (

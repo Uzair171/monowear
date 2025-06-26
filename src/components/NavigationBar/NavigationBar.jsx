@@ -1,11 +1,25 @@
-import { Outlet } from "react-router-dom";
+import { Fragment } from "react";
+import { Outlet, Link } from "react-router-dom";
+import crown from "../../assets/crown.svg";
+import "./navigation.style.scss";
 
 const NavigationBar = () => {
   return (
-    <div>
-      <h2>This is a navigation bar</h2>
+    <Fragment>
+      <div className="navigation">
+        <Link className="logo-container" to={"/"}>
+          <div>
+            <img src={crown} alt="monowear" />
+          </div>
+        </Link>
+        <div className="nav-links-container">
+          <Link className="nav-link" to={"/shop"}>
+            Shop
+          </Link>
+        </div>
+      </div>
       <Outlet />
-    </div>
+    </Fragment>
   );
 };
 
