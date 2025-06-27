@@ -73,9 +73,11 @@ const SignInForm = () => {
           required
         />
 
-        {/* <Button type="button">Sign In</Button> */}
+        <Button type="button">Sign In</Button>
+        <Button type="button" onClick={logGoogleUser}>
+          Google Sign In
+        </Button>
       </form>
-      <Button onClick={logGoogleUser}>Google Sign In</Button>
     </div>
   );
 };
