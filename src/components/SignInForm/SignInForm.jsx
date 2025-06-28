@@ -6,6 +6,7 @@ import { useState } from "react";
 import {
   createUserDocumentFromAuth,
   signInWithGooglePopup,
+  signInAuthWithEmailAndPassword,
 } from "../../utils/firebase.utils";
 const defaultFormFields = {
   email: "",
@@ -39,6 +40,8 @@ const SignInForm = () => {
 
     try {
       setFormFields(defaultFormFields);
+      const response = await signInAuthWithEmailAndPassword(email, password);
+      console.log(response);
     } catch (error) {
       if (error.code === "auth/user-not-found") {
         alert("No user associated with this email");
@@ -72,11 +75,12 @@ const SignInForm = () => {
           onChange={handleChange}
           required
         />
-
-        <Button type="button">Sign In</Button>
-        <Button type="button" onClick={logGoogleUser}>
-          Google Sign In
-        </Button>
+        <div className="button">
+          <Button>Sign In</Button>
+          <Button type="button" buttonType="google" onClick={logGoogleUser}>
+            Google Sign In
+          </Button>
+        </div>
       </form>
     </div>
   );
