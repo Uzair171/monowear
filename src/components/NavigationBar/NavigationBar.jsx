@@ -3,9 +3,17 @@ import { Outlet, Link } from "react-router";
 import crown from "../../assets/crown.svg";
 import "./navigation.style.scss";
 import { UserContext } from "../../context/userContext.jsx";
+import { current } from "@reduxjs/toolkit";
+import { signOutUser } from "../../utils/firebase.utils.js";
+
 const NavigationBar = () => {
-  const { user } = useContext(UserContext);
-  console.log("context", user);
+  const { user, setUser } = useContext(UserContext);
+
+  const signOutHandler = async () => {
+    await signOutUser();
+    setUser(null);
+  };
+
   return (
     <Fragment>
       <div className="navigation">
@@ -18,9 +26,15 @@ const NavigationBar = () => {
           <Link className="nav-link" to={"/shop"}>
             SHOP
           </Link>
-          <Link className="nav-link" to={"/sign-in"}>
-            SIGN IN
-          </Link>
+          {user ? (
+            <span className="nav-link" onClick={signOutHandler}>
+              Sign Out
+            </span>
+          ) : (
+            <Link className="nav-link" to={"/sign-in"}>
+              SIGN IN
+            </Link>
+          )}
         </div>
       </div>
       <Outlet />
