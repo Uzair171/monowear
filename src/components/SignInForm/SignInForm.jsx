@@ -2,13 +2,12 @@ import FormInput from "../Form-input/FormInput";
 import Button from "../Button/Button";
 import "./sign-in.style.scss";
 
-import { useContext, useState } from "react";
+import { useState } from "react";
 import {
   createUserDocumentFromAuth,
   signInWithGooglePopup,
   signInAuthWithEmailAndPassword,
 } from "../../utils/firebase.utils";
-import { UserContext } from "../../context/userContext";
 const defaultFormFields = {
   email: "",
   password: "",
@@ -18,11 +17,8 @@ const SignInForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
 
-  const { setUser } = useContext(UserContext);
-
   const logGoogleUser = async () => {
-    const { user } = await signInWithGooglePopup();
-    await createUserDocumentFromAuth(user);
+    await signInWithGooglePopup();
   };
 
   const handleChange = (event) => {
@@ -44,7 +40,6 @@ const SignInForm = () => {
     try {
       setFormFields(defaultFormFields);
       const { user } = await signInAuthWithEmailAndPassword(email, password);
-      setUser(user);
     } catch (error) {
       if (error.code === "auth/user-not-found") {
         alert("No user associated with this email");
