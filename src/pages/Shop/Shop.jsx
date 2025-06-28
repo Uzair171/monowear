@@ -1,7 +1,12 @@
+import Shop_data from "./../../shop-data.json";
+
+console.log(Shop_data);
 const Shop = () => {
   return (
     <div>
-      <h2>Shop</h2>
+      {Shop_data.map(({ id, name }) => (
+        <div key={id}>{name}</div>
+      ))}
     </div>
   );
 };
