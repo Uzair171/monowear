@@ -14,9 +14,11 @@ const CartDropDown = () => {
           <CartItem cartItem={item} key={item.id} />
         ))}
       </div>
-      <Link to={"/checkout"}>
-        <Button>CheckOut</Button>
-      </Link>
+      {cartItems.length > 0 ? (
+        <Link to={"/checkout"}>
+          <Button>CheckOut</Button>
+        </Link>
+      ) : null}
     </div>
   );
 };
