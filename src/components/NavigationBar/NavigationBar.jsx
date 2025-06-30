@@ -4,6 +4,8 @@ import crown from "../../assets/crown.svg";
 import "./navigation.style.scss";
 import { UserContext } from "../../context/userContext.jsx";
 import { signOutUser } from "../../utils/firebase.utils.js";
+import CartIcon from "../Cart/CartIcon.jsx";
+import CartDropDown from "../CartDropdown/CartDropDown.jsx";
 
 const NavigationBar = () => {
   const { user } = useContext(UserContext);
@@ -29,7 +31,9 @@ const NavigationBar = () => {
               SIGN IN
             </Link>
           )}
+          <CartIcon />
         </div>
+        <CartDropDown />
       </div>
       <Outlet />
     </Fragment>
