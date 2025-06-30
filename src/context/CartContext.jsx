@@ -34,7 +34,6 @@ const cartTotalQuantity = (cartItems) =>
 const calculateCartTotal = (cartItems) =>
   cartItems.reduce((total, item) => total + item.quantity * item.price, 0);
 
-// Context
 export const CartContext = createContext({
   isCartOpen: false,
   setIsCartOpen: () => {},
