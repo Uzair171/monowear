@@ -4,8 +4,8 @@ import {
   createUserDocumentFromAuth,
 } from "../../utils/firebase.utils";
 import FormInput from "../Form-input/FormInput";
-import "./sign-up.style.scss";
 import Button from "../Button/Button";
+import "./sign-up.style.scss";
 
 const defaultFormFields = {
   displayName: "",
@@ -45,9 +45,16 @@ const SignUpForm = () => {
         password
       );
 
+      console.log("✅ User created with email/password:", user);
+
+      await createUserDocumentFromAuth(user, {
+        displayName: displayName.trim(),
+      });
+
       setFormFields(defaultFormFields);
-      await createUserDocumentFromAuth(user, { displayName });
     } catch (error) {
+      console.error("❌ Error creating user:", error.message);
+
       if (error.code === "auth/email-already-in-use") {
         alert("Email is already in use");
       } else if (error.code === "auth/weak-password") {
@@ -57,14 +64,12 @@ const SignUpForm = () => {
       } else {
         alert("Failed to sign up: " + error.message);
       }
-
-      console.error("Error creating user:", error.message);
     }
   };
 
   return (
     <div className="sign-up-container">
-      <h2>Don't have an Account?</h2>
+      <h2>Don't have an account?</h2>
       <span>Sign up with your Email and Password</span>
       <form onSubmit={handleSubmit}>
         <FormInput

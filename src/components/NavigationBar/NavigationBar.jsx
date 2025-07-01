@@ -9,7 +9,7 @@ import CartDropDown from "../CartDropdown/CartDropDown.jsx";
 import { CartContext } from "../../context/CartContext.jsx";
 
 const NavigationBar = () => {
-  const { user } = useContext(UserContext);
+  const { currentUser } = useContext(UserContext);
   const { isCartOpen } = useContext(CartContext);
 
   return (
@@ -24,8 +24,14 @@ const NavigationBar = () => {
           <Link className="nav-link" to={"/shop"}>
             SHOP
           </Link>
-          {user ? (
-            <span className="nav-link" onClick={signOutUser}>
+          {currentUser ? (
+            <span
+              className="nav-link"
+              onClick={async () => {
+                await signOutUser();
+                console.log("👋 User signed out successfully");
+              }}
+            >
               Sign Out
             </span>
           ) : (

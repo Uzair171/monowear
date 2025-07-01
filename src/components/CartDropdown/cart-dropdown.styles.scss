@@ -28,3 +28,14 @@
     width: 100%;
   }
 }
+
+.empty-message {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  color: #555;
+  text-align: center;
+  padding: 20px;
+}
