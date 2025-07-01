@@ -19,6 +19,7 @@
     position: absolute;
     top: 255px;
     display: none;
+    font-size: 16px;
   }
 
   &:hover {
@@ -46,6 +47,27 @@
 
     .price {
       width: 10%;
+    }
+  }
+
+  @media screen and (max-width: 1058px) {
+    button {
+      font-size: 14px;
+      width: 75%;
+    }
+  }
+
+  @media screen and (max-width: 964px) {
+    button {
+      font-size: 12px;
+      width: 70%;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    button {
+      font-size: 10px;
+      width: 60%;
     }
   }
 }

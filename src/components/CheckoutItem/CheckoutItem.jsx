@@ -4,7 +4,7 @@ import { useContext } from "react";
 
 const CheckoutItem = ({ cartItem }) => {
   const { name, quantity, price, imageUrl } = cartItem;
-  const { removeItemFromCart, clearItem, addItemToCart } =
+  const { removeItemFromCart, clearItemFromCart, addItemToCart } =
     useContext(CartContext);
 
   const handleRemoveClick = () => {
@@ -12,7 +12,7 @@ const CheckoutItem = ({ cartItem }) => {
   };
 
   const handleClearClick = () => {
-    clearItem(cartItem);
+    clearItemFromCart(cartItem);
   };
 
   const handleAddClick = () => {

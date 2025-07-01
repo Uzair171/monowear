@@ -15,13 +15,15 @@ import {
   setDoc,
   collection,
   writeBatch,
+  query,
+  getDocs,
 } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API,
   authDomain: "monowear-55ba5.firebaseapp.com",
   projectId: "monowear-55ba5",
-  storageBucket: "monowear-55ba5.firebasestorage.app",
+  storageBucket: "monowear-55ba5.appspot.com",
   messagingSenderId: "692248184729",
   appId: "1:692248184729:web:afd93140b34ec1722bf508",
 };
@@ -34,8 +36,7 @@ provider.setCustomParameters({
 });
 
 export const auth = getAuth();
-export const signInWithGooglePopup = async () =>
-  await signInWithPopup(auth, provider);
+export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
 
 export const db = getFirestore();
 
@@ -45,6 +46,7 @@ export const addCollectionAndDocuments = async (
 ) => {
   const collectionRef = collection(db, collectionKey);
   const batch = writeBatch(db);
+
   objectsToAdd.forEach((object) => {
     const docRef = doc(collectionRef, object.title.toLowerCase());
     batch.set(docRef, object);
@@ -54,16 +56,30 @@ export const addCollectionAndDocuments = async (
   console.log("Data Added to Database");
 };
 
+export const getCategoriesAndDocuments = async () => {
+  const collectionRef = collection(db, "categories");
+  const querySnapshot = await getDocs(collectionRef);
+
+  const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
+    const { title, items } = docSnapshot.data();
+    acc[title.toLowerCase()] = items;
+    return acc;
+  }, {});
+
+  return categoryMap;
+};
+
 export const createUserDocumentFromAuth = async (
   userAuth,
   additionalInformation = {}
 ) => {
   const userDocRef = doc(db, "users", userAuth.uid);
-
   const userSnapshot = await getDoc(userDocRef);
+
   if (!userSnapshot.exists()) {
     const { displayName, email } = userAuth;
     const createdAt = new Date();
+
     try {
       await setDoc(userDocRef, {
         displayName,
@@ -75,6 +91,7 @@ export const createUserDocumentFromAuth = async (
       console.log(err);
     }
   }
+
   return userDocRef;
 };
 
