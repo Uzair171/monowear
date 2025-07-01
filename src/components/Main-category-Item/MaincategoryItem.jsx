@@ -1,4 +1,6 @@
+import { Link } from "react-router";
 import "./maincategoryItem.style.scss";
+
 const MainCategoryItem = ({ category }) => {
   return (
     <div className="main-category-Item-container">
@@ -8,10 +10,14 @@ const MainCategoryItem = ({ category }) => {
           backgroundImage: `url(${category.imageUrl})`,
         }}
       />
-      <div className="main-category-Item-body-container">
+
+      <Link
+        to={`/shop/${category.title.toLowerCase()}`}
+        className="main-category-Item-body-container"
+      >
         <h2>{category.title}</h2>
         <p>Shop Now</p>
-      </div>
+      </Link>
     </div>
   );
 };
