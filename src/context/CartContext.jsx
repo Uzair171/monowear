@@ -27,6 +27,8 @@ const removeCartItem = (cartItems, productToRemove) => {
 const clearCartItem = (cartItems, productToRemove) => {
   return cartItems.filter((item) => item.id !== productToRemove.id);
 };
+
+//global store that anyone can have access too
 export const CartContext = createContext({
   isCartOpen: true,
   setIsCartOpen: () => {},
@@ -43,6 +45,7 @@ const CART_ACTION_TYPES = {
   SET_CART_OPEN: "SET_CART_OPEN",
 };
 
+// initial vlaues for the reducer
 const INITIAL_STATE = {
   isCartOpen: false,
   cartItems: [],
