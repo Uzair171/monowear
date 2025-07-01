@@ -1,5 +1,5 @@
 import { categories } from "../../assets/categories";
-import CategoryItem from "../category-Item/CategoryItem";
+import CategoryItem from "../Main-category-Item/MaincategoryItem";
 import "./directoryItem.style.scss";
 
 const DirectoryItem = () => {
