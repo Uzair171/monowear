@@ -30,7 +30,7 @@ const clearCartItem = (cartItems, productToRemove) => {
 
 //global store that anyone can have access too
 export const CartContext = createContext({
-  isCartOpen: false,
+  isCartOpen: true,
   setIsCartOpen: () => {},
   cartItems: [],
   addItemToCart: () => {},
