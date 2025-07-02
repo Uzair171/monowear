@@ -3,15 +3,15 @@ import { Outlet, Link } from "react-router";
 import crown from "../../assets/crown.svg";
 import "./navigation.style.scss";
 import { signOutUser } from "../../utils/firebase.utils.js";
-import CartIcon from "../Cart/CartIcon.jsx";
+import CartIcon from "../CartIcon/CartIcon.jsx";
 import CartDropDown from "../CartDropdown/CartDropDown.jsx";
-import { CartContext } from "../../context/CartContext.jsx";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../store/user/user.selector.js";
+import { selectIsCartOpen } from "../../store/cart/cart.selector.js";
 
 const NavigationBar = () => {
   const currentUser = useSelector(selectCurrentUser);
-  const { isCartOpen } = useContext(CartContext);
+  const isCartOpen = useSelector(selectIsCartOpen);
 
   return (
     <Fragment>
