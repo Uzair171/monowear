@@ -2,7 +2,6 @@ import { Fragment, useContext } from "react";
 import { Outlet, Link } from "react-router";
 import crown from "../../assets/crown.svg";
 import "./navigation.style.scss";
-import { UserContext } from "../../context/userContext.jsx";
 import { signOutUser } from "../../utils/firebase.utils.js";
 import CartIcon from "../Cart/CartIcon.jsx";
 import CartDropDown from "../CartDropdown/CartDropDown.jsx";

@@ -1,10 +1,15 @@
 import { Route, Routes } from "react-router";
 import { useEffect, useState } from "react";
+
 import CategoriesPreview from "../CategoriesPreview/CategoreisPreview";
 import Category from "../Category/Category";
 import "./shop.style.scss";
+import { getCategoriesAndDocuments } from "../../utils/firebase.utils";
+import { setCategoriesMap } from "../../store/categories/categories.action";
+import { useDispatch } from "react-redux";
 
 const Shop = () => {
+  const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -13,6 +18,14 @@ const Shop = () => {
     }, 3500);
 
     return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    const getCategoriesMap = async () => {
+      const data = await getCategoriesAndDocuments();
+      dispatch(setCategoriesMap(data));
+    };
+    getCategoriesMap();
   }, []);
 
   return (
