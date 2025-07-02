@@ -7,9 +7,11 @@ import { signOutUser } from "../../utils/firebase.utils.js";
 import CartIcon from "../Cart/CartIcon.jsx";
 import CartDropDown from "../CartDropdown/CartDropDown.jsx";
 import { CartContext } from "../../context/CartContext.jsx";
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "../../store/user/user.selector.js";
 
 const NavigationBar = () => {
-  const { currentUser } = useContext(UserContext);
+  const currentUser = useSelector(selectCurrentUser);
   const { isCartOpen } = useContext(CartContext);
 
   return (

@@ -3,20 +3,21 @@ import App from "./App.jsx";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router";
-import { UserProvider } from "./context/userContext.jsx";
 import { ProductsProvider } from "./context/productContext.jsx";
 import { CartProvider } from "./context/CartContext.jsx";
+import { Provider } from "react-redux";
+import { store } from "./store/store.js";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <BrowserRouter>
-      <UserProvider>
+    <Provider store={store}>
+      <BrowserRouter>
         <ProductsProvider>
           <CartProvider>
             <App />
           </CartProvider>
         </ProductsProvider>
-      </UserProvider>
-    </BrowserRouter>
+      </BrowserRouter>
+    </Provider>
   </StrictMode>
 );
