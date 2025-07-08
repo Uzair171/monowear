@@ -20,7 +20,7 @@ import {
 } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API,
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: "monowear-55ba5.firebaseapp.com",
   projectId: "monowear-55ba5",
   storageBucket: "monowear-55ba5.appspot.com",
