@@ -1,6 +1,7 @@
 import { compose, createStore, applyMiddleware } from "@reduxjs/toolkit";
 import logger from "redux-logger";
 import { rootReducer } from "./root-reducer.js";
+import { thunk } from "redux-thunk";
 
 //root reducer
 
@@ -14,7 +15,7 @@ const persistConfig = {
 };
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-const middleWares = [logger];
+const middleWares = [logger, thunk];
 
 const composedEnhancers = compose(applyMiddleware(...middleWares));
 
